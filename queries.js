@@ -1,9 +1,11 @@
+
 /* Fill out these functions using Mongoose queries*/
 var mongoose = require('mongoose'), 
     Listing = require('./ListingSchema.js'), 
     config = require('./config');
 
 mongoose.connect(config.db.uri);
+/* Fill out these functions using Mongoose queries*/
 
 var findLibraryWest = function() {
   /* 
@@ -11,9 +13,9 @@ var findLibraryWest = function() {
     then log it to the console. 
    */
    
-	Listing.find({name:"Library West"}, function(err, listing){
-		if(err) throw err;
-		console.log(listing);
+  Listing.find({name:"Library West"}, function(err, listing){
+    if(err) throw err;
+    console.log(listing);
    });
 };
 var removeCable = function() {
@@ -24,7 +26,7 @@ var removeCable = function() {
    */
    
    Listing.find({code:"CABL"}).remove().exec(function(err){
-	   if(err) throw err;
+     if(err) throw err;
    });
 };
 var updatePhelpsMemorial = function() {
@@ -32,25 +34,22 @@ var updatePhelpsMemorial = function() {
     Phelps Memorial Hospital Center's address is incorrect. Find the listing, update it, and then 
     log the updated document to the console. 
    */
-   
-   Listing.where({name: "Phelps Memorial Hospital Center"}, {$set:{address:'new address'}});
+   Listing.findOneAndUpdate({name:'Phelps Memorial Hospital Center'},{address:'701 North Broadway, Sleepy Hollow, NY 10591'},function(err,item) {
+    if (err) throw err;
+    console.log(item);
+   })
 };
 var retrieveAllListings = function() {
-	/* 
-		Retrieve all listings in the database, and log them to the console. 
-	*/
-
-	 Listing.find({}, function(err, l) {
-	  if (err) throw err;
-	  console.log(l);
-	})
-	.exec(function(){
-		mongoose.disconnect();
-	});
+  /* 
+    Retrieve all listings in the database, and log them to the console. 
+   */
+   Listing.find({},function(err,items) {
+    if (err) throw err;
+    console.log(items);
+   })
 };
 
 findLibraryWest();
 removeCable();
 updatePhelpsMemorial();
 retrieveAllListings();
-
