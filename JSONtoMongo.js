@@ -29,7 +29,7 @@ var callback = function(err){
   }
   entries_counter++;
   if(entries_counter == (listings.length)){
-    console.log(listings.length + " listing entries added to mongolab.")
+    console.log(listings.length + " listing successfully added.")
     mongoose.disconnect();
   } 
 }
