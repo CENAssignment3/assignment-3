@@ -19,6 +19,7 @@ mongoose.connect(config.db.uri);
 
 // read listings.json
 var listings = JSON.parse(fs.readFileSync('listings.json', 'utf8')).entries;
+
 // go through listings.json and add entries to the db
 // use callback counter disconnect from the db when complete
 var entries_counter = 0;
@@ -28,7 +29,7 @@ var callback = function(err){
   }
   entries_counter++;
   if(entries_counter == (listings.length)){
-    console.log(listings.length + " listing entries successfully added!")
+    console.log(listings.length + " listing entries added to mongolab.")
     mongoose.disconnect();
   } 
 }
