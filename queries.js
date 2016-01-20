@@ -25,8 +25,9 @@ var removeCable = function() {
     and remove this listing from your database and log the document to the console. 
    */
    
-   Listing.find({code:"CABL"}).remove().exec(function(err){
-     if(err) throw err;
+   Listing.findOneAndRemove({code:"CABL"},function(err,item){
+    if (err) throw err;
+    console.log(item);
    });
 };
 var updatePhelpsMemorial = function() {
@@ -34,7 +35,7 @@ var updatePhelpsMemorial = function() {
     Phelps Memorial Hospital Center's address is incorrect. Find the listing, update it, and then 
     log the updated document to the console. 
    */
-   Listing.findOneAndUpdate({name:'Phelps Memorial Hospital Center'},{address:'701 North Broadway, Sleepy Hollow, NY 10591'},function(err,item) {
+   Listing.findOneAndUpdate({name:"Phelps Laboratory"},{address:"102 Phelps Lab, Gainesville, FL 32611"},function(err,item) {
     if (err) throw err;
     console.log(item);
    })
